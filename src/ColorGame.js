@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import { ColorBox } from "./ColorBox";
 
 // ====================
-function ColorGame() {
+export function ColorGame() {
   const [color, setColor] = useState("");
   var styles1 = {
     background: color,

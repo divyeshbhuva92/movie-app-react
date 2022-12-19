@@ -3,6 +3,7 @@ import { useState } from "react";
 // import { Welcome } from "./Welcome";
 import { MovieList } from "./MovieList";
 import { AddMovie } from "./AddMovie";
+import { ColorGame } from "./ColorGame";
 import { INITIAL_MOVIE_LIST } from "./INITIAL_MOVIE_LIST";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
@@ -11,6 +12,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -86,16 +88,75 @@ function App() {
         </Toolbar>
       </AppBar>
 
-      {/* <AddMovie setmoviesList={setmoviesList} moviesList={moviesList} /> */}
+      <ul>
+        <li>
+          <Link to="/movies">Movies</Link>
+        </li>
+        <li>
+          <Link to="/colorgame">Color Game</Link>
+        </li>
+        <li>
+          <Link to="/movies/add">Add Movies</Link>
+        </li>
+      </ul>
 
-      {/* find text if it present in movie names */}
-      <MovieList
-        movies={moviesList.filter((mv) =>
-          mv.name.toLowerCase().includes(search.toLowerCase())
-        )}
-      />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        {/* redirection :-  films to movies */}
+        <Route path="/films" element={<Navigate replace to="/movies" />} />
+        <Route
+          path="/movies"
+          element={
+            <MovieList
+              movies={moviesList.filter((mv) =>
+                mv.name.toLowerCase().includes(search.toLowerCase())
+              )}
+            />
+          }
+        />
+        <Route path="/colorgame" element={<ColorGame />} />
+        <Route
+          path="/movies/add"
+          element={
+            <AddMovie setmoviesList={setmoviesList} moviesList={moviesList} />
+          }
+        />
+        <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="/404" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
 
+function Home() {
+  return (
+    <div>
+      <h1>Welcom to Movie App</h1>
+    </div>
+  );
+}
+function About() {
+  return (
+    <div>
+      <h1>Welcom to About Page</h1>
+    </div>
+  );
+}
+function NotFound() {
+  const styles = {
+    width: "100%",
+    objectFit: "contain",
+    maxHeight: "350px",
+  };
+  return (
+    <div>
+      <img
+        style={styles}
+        src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX22636839.jpg"
+        alt=""
+      />
+    </div>
+  );
+}
 export default App;
