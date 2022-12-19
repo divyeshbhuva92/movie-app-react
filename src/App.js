@@ -114,7 +114,10 @@ function App() {
           }
         />
         <Route path="/colorgame" element={<ColorGame />} />
-        <Route path="/movies/:id" element={<MoviesDetails />} />
+        <Route
+          path="/movies/:id"
+          element={<MovieDetails moviesList={moviesList} />}
+        />
         <Route
           path="/movies/add"
           element={
@@ -158,11 +161,27 @@ function About() {
 //     </div>
 //   );
 // }
-function MoviesDetails() {
-  const val = useParams();
-  console.log(val);
-  <div>
-    <h1>Welcome to MoviesDetails</h1>
-  </div>;
+function MovieDetails({ moviesList }) {
+  const { id } = useParams();
+  console.log(id);
+
+  const movie = moviesList[id];
+  console.log(movie);
+  const { trailer } = movie.trailer;
+  console.log(trailer);
+  return (
+    <div>
+      <iframe
+        width="100%"
+        height="700px"
+        src={movie.trailer}
+        title={movie.name}
+        fr
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+      <h1>Welcome to trailer of {movie.name}</h1>
+    </div>
+  );
 }
 export default App;
