@@ -1,5 +1,6 @@
 export const INITIAL_MOVIE_LIST = [
   {
+    id: "1",
     name: "Vikram",
     poster:
       "https://pbs.twimg.com/media/FSpJqSsaIAEgeM8?format=jpg&name=4096x4096",
@@ -9,6 +10,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/watch?v=OKBMCL-frPU",
   },
   {
+    id: "2",
     name: "RRR",
     poster:
       "https://m.media-amazon.com/images/M/MV5BOGEzYzcxYjAtZmZiNi00YzI0LWIyY2YtOTM0MDFjODU2YTZiXkEyXkFqcGdeQXVyMTQ3Mzk2MDg4._V1_.jpg",
@@ -18,6 +20,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/f_vbAtFSEc0",
   },
   {
+    id: "3",
     name: "Iron man 2",
     poster:
       "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
@@ -27,6 +30,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/wKtcmiifycU",
   },
   {
+    id: "4",
     name: "No Country for Old Men",
     poster:
       "https://upload.wikimedia.org/wikipedia/en/8/8b/No_Country_for_Old_Men_poster.jpg",
@@ -36,6 +40,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/38A__WT3-o0",
   },
   {
+    id: "5",
     name: "Jai Bhim",
     poster:
       "https://m.media-amazon.com/images/M/MV5BY2Y5ZWMwZDgtZDQxYy00Mjk0LThhY2YtMmU1MTRmMjVhMjRiXkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
@@ -45,6 +50,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/nnXpbTFrqXA",
   },
   {
+    id: "6",
     name: "The Avengers",
     rating: 8,
     summary:
@@ -54,6 +60,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/eOrNdBpGMv8",
   },
   {
+    id: "7",
     name: "Interstellar",
     poster: "https://m.media-amazon.com/images/I/A1JVqNMI7UL._SL1500_.jpg",
     rating: 8.6,
@@ -62,6 +69,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/zSWdZVtXT7E",
   },
   {
+    id: "8",
     name: "Bahubali",
     poster: "https://flxt.tmsimg.com/assets/p11546593_p_v10_af.jpg",
     rating: 8,
@@ -70,6 +78,7 @@ export const INITIAL_MOVIE_LIST = [
     trailer: "https://www.youtube.com/embed/sOEg_YZQsTI",
   },
   {
+    id: "9",
     name: "Ratatouille",
     poster:
       "https://resizing.flixster.com/gL_JpWcD7sNHNYSwI1ff069Yyug=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc4ZmJhZjZiLTEzNWMtNDIwOC1hYzU1LTgwZjE3ZjQzNTdiNy5qcGc=",

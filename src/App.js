@@ -8,11 +8,17 @@ import { INITIAL_MOVIE_LIST } from "./INITIAL_MOVIE_LIST";
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -21,10 +27,9 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginLeft: 0,
+
   width: "100%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
     width: "auto",
   },
 }));
@@ -61,20 +66,25 @@ function App() {
   // const users = INITIAL_USERS_LIST;
   const [moviesList, setmoviesList] = useState(INITIAL_MOVIE_LIST);
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   return (
     <div className="App">
       <AppBar position="static">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
-          >
-            MOVIE-APP
-          </Typography>
-          <Search>
+          <Button color="inherit" onClick={() => navigate("/")}>
+            Home
+          </Button>
+          <Button color="inherit" onClick={() => navigate("/movies")}>
+            Movies
+          </Button>
+          <Button color="inherit" onClick={() => navigate("/movies/add")}>
+            Add Movies
+          </Button>
+          <Button color="inherit" onClick={() => navigate("/colorgame")}>
+            Color Game
+          </Button>
+          <Search sx={{ marginLeft: "auto" }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -87,18 +97,6 @@ function App() {
           </Search>
         </Toolbar>
       </AppBar>
-
-      <ul>
-        <li>
-          <Link to="/movies">Movies</Link>
-        </li>
-        <li>
-          <Link to="/colorgame">Color Game</Link>
-        </li>
-        <li>
-          <Link to="/movies/add">Add Movies</Link>
-        </li>
-      </ul>
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -116,14 +114,15 @@ function App() {
           }
         />
         <Route path="/colorgame" element={<ColorGame />} />
+        <Route path="/movies/:id" element={<MoviesDetails />} />
         <Route
           path="/movies/add"
           element={
             <AddMovie setmoviesList={setmoviesList} moviesList={moviesList} />
           }
         />
-        <Route path="*" element={<Navigate replace to="/404" />} />
-        <Route path="/404" element={<NotFound />} />
+        {/* <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="/404" element={<NotFound />} /> */}
       </Routes>
     </div>
   );
@@ -143,20 +142,27 @@ function About() {
     </div>
   );
 }
-function NotFound() {
-  const styles = {
-    width: "100%",
-    objectFit: "contain",
-    maxHeight: "350px",
-  };
-  return (
-    <div>
-      <img
-        style={styles}
-        src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX22636839.jpg"
-        alt=""
-      />
-    </div>
-  );
+// function NotFound() {
+//   const styles = {
+//     width: "100%",
+//     objectFit: "contain",
+//     maxHeight: "350px",
+//   };
+//   return (
+//     <div>
+//       <img
+//         style={styles}
+//         src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX22636839.jpg"
+//         alt=""
+//       />
+//     </div>
+//   );
+// }
+function MoviesDetails() {
+  const val = useParams();
+  console.log(val);
+  <div>
+    <h1>Welcome to MoviesDetails</h1>
+  </div>;
 }
 export default App;
