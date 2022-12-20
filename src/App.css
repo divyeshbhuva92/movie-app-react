@@ -148,3 +148,39 @@ progress {
   text-transform: capitalize;
   border-radius: px;
 }
+
+.movieSpecs {
+  margin: 0px;
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.movie-rating-container {
+  display: flex;
+  gap: 7px;
+  height: 30px;
+  margin-top: 2px;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  background: none;
+}
+
+.mSummary {
+  margin-top: 0px;
+  margin-left: 0px;
+  padding: 0px 10px 5px 10px;
+  width: 92%;
+  text-align: start;
+}
+.back-btn {
+  margin-left: 10px;
+}
+
+.movie-trailer {
+  margin: 0px;
+  padding: 0px;
+}

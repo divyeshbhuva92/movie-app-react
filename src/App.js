@@ -1,6 +1,5 @@
 import "./App.css";
 import { useState } from "react";
-// import { Welcome } from "./Welcome";
 import { MovieList } from "./MovieList";
 import { AddMovie } from "./AddMovie";
 import { ColorGame } from "./ColorGame";
@@ -12,6 +11,9 @@ import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { StarRounded } from "@mui/icons-material";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import Stack from "@mui/material/Stack";
 import {
   Routes,
   Route,
@@ -163,24 +165,49 @@ function About() {
 // }
 function MovieDetails({ moviesList }) {
   const { id } = useParams();
-  console.log(id);
-
   const movie = moviesList[id];
-  console.log(movie);
-  const { trailer } = movie.trailer;
-  console.log(trailer);
+  const navigate = useNavigate();
   return (
     <div>
-      <iframe
-        width="100%"
-        height="700px"
-        src={movie.trailer}
-        title={movie.name}
-        fr
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
-      <h1>Welcome to trailer of {movie.name}</h1>
+      <div className="movie-trailer">
+        <iframe
+          width="100%"
+          height="700px"
+          src={movie.trailer}
+          title={movie.name}
+          fr
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div>
+        <div className="movieSpecs">
+          <h1>{movie.name}</h1>
+
+          <div className="movie-rating-container">
+            <StarRounded
+              style={{ color: "orange" }}
+              fontSize="small"
+            ></StarRounded>
+            <p className="rating">{movie.rating}</p>
+          </div>
+        </div>
+        <div>
+          <p className="mSummary">{movie.summary}</p>
+        </div>
+        <div className="back-btn">
+          <Stack direction="row" spacing={2}>
+            <Button
+              variant="contained"
+              size="medium"
+              onClick={() => navigate(-1)}
+              startIcon={<ArrowLeftIcon />}
+            >
+              Back
+            </Button>
+          </Stack>
+        </div>
+      </div>
     </div>
   );
 }
