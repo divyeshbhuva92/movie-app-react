@@ -25,7 +25,7 @@ import {
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  backgroundColor: alpha(theme.palette.common.white, butt0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -147,22 +147,22 @@ function About() {
     </div>
   );
 }
-// function NotFound() {
-//   const styles = {
-//     width: "100%",
-//     objectFit: "contain",
-//     maxHeight: "350px",
-//   };
-//   return (
-//     <div>
-//       <img
-//         style={styles}
-//         src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX22636839.jpg"
-//         alt=""
-//       />
-//     </div>
-//   );
-// }
+function NotFound() {
+  const styles = {
+    width: "100%",
+    objectFit: "contain",
+    maxHeight: "350px",
+  };
+  return (
+    <div>
+      <img
+        style={styles}
+        src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX22636839.jpg"
+        alt=""
+      />
+    </div>
+  );
+}
 function MovieDetails({ moviesList }) {
   const { id } = useParams();
   const movie = moviesList[id];
