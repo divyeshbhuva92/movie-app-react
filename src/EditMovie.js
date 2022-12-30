@@ -1,30 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { API } from "./globle";
 
-export function AddMovie({ setmoviesList, moviesList }) {
-  const [name, setName] = useState("");
-  const [rating, setRating] = useState("");
-  const [poster, setPoster] = useState("");
-  const [summary, setSummary] = useState("");
-  const [trailer, setTrailer] = useState("");
+export function EditMovie() {
+  const { id } = useParams();
+
+  const [movie, setmovie] = useState(null);
+  useEffect(() => {
+    fetch(`${API}/movies/${id}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((mv) => {
+        setmovie(mv);
+      });
+  }, [id]);
+
+  return movie ? <EditMovieForm movie={movie} /> : "Loading...";
+}
+
+function EditMovieForm({ movie }) {
+  const [name, setName] = useState(movie.name);
+  const [rating, setRating] = useState(movie.rating);
+  const [poster, setPoster] = useState(movie.poster);
+  const [summary, setSummary] = useState(movie.summary);
+  const [trailer, setTrailer] = useState(movie.trailer);
   const navigate = useNavigate();
 
-  const addMovie = () => {
-    const newMovies = {
+  const editMovie = () => {
+    const updateMovies = {
       name,
       poster,
       rating,
       summary,
       trailer,
     };
-    // console.log(newMovies);
-    setmoviesList([...moviesList, newMovies]);
-    fetch(`${API}/movies`, {
-      method: "POST",
-      body: JSON.stringify(newMovies),
+
+    fetch(`${API}/movies/${movie.id}`, {
+      method: "PUT",
+      body: JSON.stringify(updateMovies),
       headers: { "content-type": "application/json" },
     })
       .then((res) => res.json())
@@ -38,7 +54,7 @@ export function AddMovie({ setmoviesList, moviesList }) {
         className="add-movie-input"
         placeholder="Name"
         size="small"
-        defaultValue={name}
+        value={name}
         onChange={(event) => setName(event.target.value)}
       />
       <TextField
@@ -46,7 +62,7 @@ export function AddMovie({ setmoviesList, moviesList }) {
         className="add-movie-input"
         placeholder="Rating"
         size="small"
-        defaultValue={rating}
+        value={rating}
         onChange={(event) => setRating(event.target.value)}
       />
       <TextField
@@ -54,7 +70,7 @@ export function AddMovie({ setmoviesList, moviesList }) {
         className="add-movie-input"
         placeholder="Poster URL"
         size="small"
-        defaultValue={poster}
+        value={poster}
         onChange={(event) => setPoster(event.target.value)}
       />
       <TextField
@@ -62,7 +78,7 @@ export function AddMovie({ setmoviesList, moviesList }) {
         className="add-movie-input"
         placeholder="Summary"
         size="small"
-        defaultValue={summary}
+        value={summary}
         onChange={(event) => setSummary(event.target.value)}
       />
       <TextField
@@ -70,7 +86,7 @@ export function AddMovie({ setmoviesList, moviesList }) {
         className="add-movie-input"
         placeholder="Trailer"
         size="small"
-        defaultValue={trailer}
+        value={trailer}
         onChange={(event) => setTrailer(event.target.value)}
       />
 
@@ -78,9 +94,9 @@ export function AddMovie({ setmoviesList, moviesList }) {
         className="add-movie-btn"
         variant="contained"
         size="small"
-        onClick={addMovie}
+        onClick={editMovie}
       >
-        Add Movie
+        Save
       </Button>
     </div>
   );

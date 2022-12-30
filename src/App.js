@@ -12,8 +12,9 @@ import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 // import { INITIAL_MOVIE_LIST } from "./INITIAL_MOVIE_LIST";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { BasicForm } from "./BasicForm";
+// import { BasicForm } from "./BasicForm";
 import { MovieDetails } from "./MovieDetails";
+import { EditMovie } from "./EditMovie";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -125,6 +126,7 @@ function App() {
             <AddMovie setmoviesList={setmoviesList} moviesList={moviesList} />
           }
         />
+        <Route path="/movies/edit/:id" element={<EditMovie />} />
         <Route path="*" element={<Navigate replace to="/404" />} />
         <Route path="/404" element={<NotFound />} />
       </Routes>
@@ -136,7 +138,7 @@ function Home() {
   return (
     <div>
       <h1>Welcome to Movie App</h1>
-      <BasicForm />
+      {/* <BasicForm /> */}
     </div>
   );
 }

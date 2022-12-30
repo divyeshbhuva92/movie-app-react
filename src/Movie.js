@@ -7,10 +7,11 @@ import { StarRounded } from "@mui/icons-material";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import InfoIcon from "@mui/icons-material/Info";
+
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie, id, deletebutton }) {
+export function Movie({ movie, id, deletebutton, editbutton }) {
   const styles = {
     color: movie.rating >= 8.5 ? "red" : "black",
   };
@@ -62,6 +63,7 @@ export function Movie({ movie, id, deletebutton }) {
       {/* Toggle summary */}
       {show ? <p className="movie-summary">{movie.summary}</p> : null}
       {deletebutton}
+      {editbutton}
     </Card>
   );
 }
