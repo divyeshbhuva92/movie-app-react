@@ -62,8 +62,12 @@ export function Movie({ movie, id, deletebutton, editbutton }) {
 
       {/* Toggle summary */}
       {show ? <p className="movie-summary">{movie.summary}</p> : null}
-      {deletebutton}
-      {editbutton}
+      {show ? (
+        <div className="movie-modify-btn">
+          {deletebutton}
+          {editbutton}
+        </div>
+      ) : null}
     </Card>
   );
 }
