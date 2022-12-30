@@ -1,31 +1,24 @@
 import "./App.css";
+import * as React from "react";
 import { useState } from "react";
 import { MovieList } from "./MovieList";
 import { AddMovie } from "./AddMovie";
 import { ColorGame } from "./ColorGame";
-import { INITIAL_MOVIE_LIST } from "./INITIAL_MOVIE_LIST";
-import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import Toolbar from "@mui/material/Toolbar";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { StarRounded } from "@mui/icons-material";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import Stack from "@mui/material/Stack";
-import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+// import { INITIAL_MOVIE_LIST } from "./INITIAL_MOVIE_LIST";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { BasicForm } from "./BasicForm";
+import { MovieDetails } from "./MovieDetails";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, butt0.15),
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
@@ -64,11 +57,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function App() {
-  // const names = ["Anju", "Hemanth", "Shruthi", "Gautham", "Anis"];
-  // const users = INITIAL_USERS_LIST;
-  const [moviesList, setmoviesList] = useState(INITIAL_MOVIE_LIST);
+  const [moviesList, setmoviesList] = useState([]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   fetch("https://6371fb0e025414c63702d396.mockapi.io/movieList")
+  //     .then((res) => res.json())
+  //     .then((mvs) => {
+  //       setmoviesList(mvs);
+  //     });
+  // }, []);
 
   return (
     <div className="App">
@@ -126,8 +125,8 @@ function App() {
             <AddMovie setmoviesList={setmoviesList} moviesList={moviesList} />
           }
         />
-        {/* <Route path="*" element={<Navigate replace to="/404" />} />
-        <Route path="/404" element={<NotFound />} /> */}
+        <Route path="*" element={<Navigate replace to="/404" />} />
+        <Route path="/404" element={<NotFound />} />
       </Routes>
     </div>
   );
@@ -137,6 +136,7 @@ function Home() {
   return (
     <div>
       <h1>Welcome to Movie App</h1>
+      <BasicForm />
     </div>
   );
 }
@@ -160,54 +160,6 @@ function NotFound() {
         src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX22636839.jpg"
         alt=""
       />
-    </div>
-  );
-}
-function MovieDetails({ moviesList }) {
-  const { id } = useParams();
-  const movie = moviesList[id];
-  const navigate = useNavigate();
-  return (
-    <div>
-      <div className="movie-trailer">
-        <iframe
-          width="100%"
-          height="700px"
-          src={movie.trailer}
-          title={movie.name}
-          fr
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
-      <div>
-        <div className="movieSpecs">
-          <h1>{movie.name}</h1>
-
-          <div className="movie-rating-container">
-            <StarRounded
-              style={{ color: "orange" }}
-              fontSize="small"
-            ></StarRounded>
-            <p className="rating">{movie.rating}</p>
-          </div>
-        </div>
-        <div>
-          <p className="mSummary">{movie.summary}</p>
-        </div>
-        <div className="back-btn">
-          <Stack direction="row" spacing={2}>
-            <Button
-              variant="contained"
-              size="medium"
-              onClick={() => navigate(-1)}
-              startIcon={<ArrowLeftIcon />}
-            >
-              Back
-            </Button>
-          </Stack>
-        </div>
-      </div>
     </div>
   );
 }

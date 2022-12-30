@@ -10,7 +10,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 
-export function Movie({ movie }) {
+export function Movie({ movie, id, deletebutton }) {
   const styles = {
     color: movie.rating >= 8.5 ? "red" : "black",
   };
@@ -61,6 +61,7 @@ export function Movie({ movie }) {
 
       {/* Toggle summary */}
       {show ? <p className="movie-summary">{movie.summary}</p> : null}
+      {deletebutton}
     </Card>
   );
 }
